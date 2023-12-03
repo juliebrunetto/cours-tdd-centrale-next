@@ -1,0 +1,72 @@
+:root {
+  --color-primary: #a480cf;
+  --color-secondary: #7543b1;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  monospace;
+}
+
+p {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+main {
+  --content-width: 60%;
+  --margin-width: 20%;
+  --grid: [full-width-start] var(--margin-width) [content-start]
+  var(--content-width) [content-end] var(--margin-width) [full-width-end];
+  display: grid;
+  grid-template-columns: var(--grid);
+}
+
+main > * {
+  grid-column: content;
+}
+
+main > h1 {
+  grid-column: full-width;
+}
+
+button {
+  background-color: var(--color-primary);
+  border: none;
+  padding: 0.8rem;
+  cursor: pointer;
+  border-radius: 0.7rem;
+  margin-top: 1rem;
+  color: white;
+  font-weight: 700;
+}
+
+input {
+  display: block;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: solid 1px #929292;
+  border-radius: 1.25rem;
+  min-width: 20rem;
+}
+
+h1 {
+  color: var(--color-secondary);
+}
+
+ul{
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
