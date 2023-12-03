@@ -7,13 +7,7 @@ interface CardProps extends React.ComponentPropsWithoutRef<"article"> {
 	release?: string;
 }
 
-export default function Card({
-															 title,
-															 release,
-															 children,
-															 className,
-															 ...rest
-														 }: CardProps) {
+export default function Card({ title, release, children, className, ...rest }: CardProps) {
 	const labelId = useId();
 
 	return (

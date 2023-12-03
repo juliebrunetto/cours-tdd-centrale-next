@@ -2,7 +2,7 @@ import React, { FormEvent, useState, useId } from "react";
 import Card from "@/components/Card/Card";
 import Image from "next/image";
 import style from "./Home.module.css";
-import { Amiibo } from '@/bff/dto/amiibo.type';
+import { Amiibo } from '@/dto/amiibo.type';
 
 export default function Home() {
 	const [listAmiibo, setListAmiibo] = useState<Array<Amiibo>>([]);
@@ -13,7 +13,7 @@ export default function Home() {
 		const inputValue = event.currentTarget["searchInput"].value;
 
 		if (inputValue !== "") {
-			const response = await fetch(`/api/amiibo?name=${inputValue}`, {
+			const response = await fetch(`/api/searchAmiibos?name=${inputValue}`, {
 				method: "GET",
 			});
 			const amiibos = await response.json();
