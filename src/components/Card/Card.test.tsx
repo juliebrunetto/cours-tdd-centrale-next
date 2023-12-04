@@ -6,7 +6,7 @@ import Card from "./Card";
 
 describe("<Card>", () => {
 	it("affiche le titre", () => {
-		render(<Card title="Je suis le titre" ownerName="owner" />);
+		render(<Card title="Je suis le titre" release="owner" />);
 		const title = screen.getByRole("heading", { level: 2 });
 		expect(title).toBeVisible();
 		expect(title).toHaveTextContent("Je suis le titre");
@@ -14,22 +14,18 @@ describe("<Card>", () => {
 
 	it("affiche le contenu", () => {
 		render(
-			<Card title="Je suis le titre" ownerName="owner">
+			<Card title="Je suis le titre" release="owner">
 				<p>Lorem ipsum dolor sit amet.</p>
 			</Card>,
 		);
 		expect(screen.getByText("Lorem ipsum dolor sit amet.")).toBeVisible();
 	});
 
-	it("affiche le propriétaire de l'article", () => {
-		render(<Card title="Je suis le titre" ownerName="Julie" />);
+	it("affiche la date de release de la carte", () => {
+		render(<Card title="Je suis le titre" release="15/12/2020" />);
 
-		expect(screen.getByText("Publié par Julie")).toBeVisible();
+		expect(screen.getByText("Sortie en Europe le 15/12/2020")).toBeVisible();
 	});
 
-	it("affiche le bouton de like", () => {
-		render(<Card title="Je suis le titre" ownerName="owner" />);
 
-		expect(screen.getByRole("button", { name: "Liker" })).toBeVisible();
-	});
 });

@@ -26,7 +26,6 @@ export default async function searchAmiibos(
 	req: NextApiRequest,
 	res: NextApiResponse,
 ): Promise<void> {
-	let response;
 
 	if (req.method !== "GET") {
 		return res
@@ -35,23 +34,22 @@ export default async function searchAmiibos(
 	}
 
 	try {
-		response = await fetch(
+		const apiResponse = await fetch(
 			`https://www.amiiboapi.com/api/amiibo/?name=${req.query.name}`,
 			{
 				method: "GET",
 			},
 		);
-		response = await response.json() as AmiiboListResponse;
+		const amiibosResponse = await apiResponse.json() as AmiiboListResponse;
+
+		const responseMapped = amiibosResponse.amiibo.map((data: AmiiboResponse) => ({
+			name: data.character,
+			image: data.image,
+			id: `${data.head}${data.tail}`,
+			releaseEurope: data.release.eu ?? undefined,
+		}));
+
+		return res.status(200).json(responseMapped);
 	} catch (error) {
-		throw error;
 	}
-
-	const responseMapped = response.amiibo.map((data: AmiiboResponse) => ({
-		name: data.character,
-		image: data.image,
-		id: `${data.head}${data.tail}`,
-		releaseEurope: data.release.eu ?? undefined,
-	}));
-
-	return res.status(200).json(responseMapped);
 }
