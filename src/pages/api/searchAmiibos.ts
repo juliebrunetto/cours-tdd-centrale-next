@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { Amiibo } from '@/dto/amiibo.type';
 
 export interface AmiiboListResponse {
 	amiibo: Array<AmiiboResponse>;
@@ -42,14 +43,17 @@ export default async function searchAmiibos(
 		);
 		const amiibosResponse = await apiResponse.json() as AmiiboListResponse;
 
-		const responseMapped = amiibosResponse.amiibo.map((data: AmiiboResponse) => ({
+		const responseMapped: Array<Amiibo> = amiibosResponse.amiibo.map((data: AmiiboResponse): Amiibo => ({
 			name: data.character,
 			image: data.image,
 			id: `${data.head}${data.tail}`,
 			releaseEurope: data.release.eu ?? undefined,
+			type: data.type,
+			serie: data.amiiboSeries
 		}));
 
 		return res.status(200).json(responseMapped);
 	} catch (error) {
+		console.log(error)
 	}
 }

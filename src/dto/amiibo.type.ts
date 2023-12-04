@@ -3,4 +3,6 @@ export interface Amiibo {
 	image: string;
 	id: string;
 	releaseEurope?: string;
+	type: string;
+	serie: string
 }

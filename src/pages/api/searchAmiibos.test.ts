@@ -1,5 +1,5 @@
 import searchAmiibos from './searchAmiibos';
-import { anNextApiRequest, anNextApiResponse } from '@/fixtures/NextApiFixture';
+import { anNextApiRequest, anNextApiResponse } from '@/fixtures/NextApi.fixture';
 import clearAllMocks = jest.clearAllMocks;
 
 global.fetch = jest.fn(() => Promise.resolve({
@@ -7,6 +7,7 @@ global.fetch = jest.fn(() => Promise.resolve({
 		amiibo: [],
 	}),
 }) as Promise<Response>);
+
 describe('searchAmiibos', () => {
 	beforeEach(() => {
 		clearAllMocks()

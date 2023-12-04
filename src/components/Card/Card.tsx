@@ -1,5 +1,5 @@
 import React, { useId } from "react";
-import style from "./Card.module.css";
+import styles from "./Card.module.css";
 import classNames from "classnames";
 
 interface CardProps extends React.ComponentPropsWithoutRef<"article"> {
@@ -12,15 +12,15 @@ export default function Card({ title, release, children, className, ...rest }: C
 
 	return (
 		<article
-			className={classNames(style.card, className)}
+			className={classNames(styles.card, className)}
 			aria-labelledby={labelId}
 			{...rest}
 		>
-			<h2 id={labelId} className="title">
+			<h2 id={labelId} className={styles.title}>
 				{title}
 			</h2>
 			{release && (
-				<div className={style.ownerInformation}>
+				<div className={styles.ownerInformation}>
 					Sortie en Europe le {release}
 				</div>
 			)}

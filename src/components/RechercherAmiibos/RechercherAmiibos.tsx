@@ -1,18 +1,19 @@
 import React, { FormEvent, useState, useId } from "react";
 import Card from "@/components/Card/Card";
 import Image from "next/image";
-import style from "./Home.module.css";
+import styles from "./RechercherAmiibos.module.css";
 import { Amiibo } from '@/dto/amiibo.type';
 
-export default function Home() {
+export default function RechercherAmiibos() {
 	const [listAmiibo, setListAmiibo] = useState<Array<Amiibo>>([]);
 	const inputId = useId();
 
 	async function onHandleSubmit(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
-		const inputValue = event.currentTarget["searchInput"].value;
+		const data = new FormData(event.currentTarget);
+		const inputValue = data.get('searchInput');
 
-		if (inputValue !== "") {
+		if (inputValue && inputValue !== "value") {
 			const response = await fetch(`/api/searchAmiibos?name=${inputValue}`, {
 				method: "GET",
 			});
@@ -24,7 +25,7 @@ export default function Home() {
 
 	return (
 		<main>
-			<h1 className={style.title}>Rechercher un Amiibo</h1>
+			<h1 className={styles.title}>Rechercher un Amiibo</h1>
 
 			<form onSubmit={onHandleSubmit}>
 				<label htmlFor={inputId}>Nom de l‘Amiboo</label>
@@ -34,15 +35,32 @@ export default function Home() {
 			{listAmiibo.length > 0 && (
 				<>
 					<h2>Résultats</h2>
-					<ul>
+					<ul aria-label="Liste des Amiibos">
 						{listAmiibo.map((amiibo: Amiibo) => {
-							console.log(amiibo.id);
 							return (
-								<li className={style.card} key={amiibo.id}>
+								<li className={styles.card} key={amiibo.id}>
 									<Card title={amiibo.name} release={amiibo.releaseEurope}>
-										<div className={style.cardContent}>
+										<div className={styles.cardImage}>
 											<Image src={amiibo.image} alt="" objectFit="contain" layout="fill"/>
 										</div>
+										<dl>
+											<div className={styles.caracteristiques}>
+												<dt className={styles.definition}>
+													Type
+												</dt>
+												<dd>
+													{amiibo.type}
+												</dd>
+											</div>
+											<div className={styles.caracteristiques}>
+												<dt className={styles.definition}>
+													Série
+												</dt>
+												<dd>
+													{amiibo.serie}
+												</dd>
+											</div>
+										</dl>
 									</Card>
 								</li>
 							);

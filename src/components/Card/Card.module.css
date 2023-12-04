@@ -21,4 +21,5 @@
 
 .title {
   grid-area: title;
+  color: var(--color-secondary);
 }
