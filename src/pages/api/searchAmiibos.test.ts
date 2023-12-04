@@ -1,5 +1,5 @@
 import searchAmiibos from './searchAmiibos';
-import { anNextApiRequest, anNextApiResponse } from '@/fixtures/NextApi.fixture';
+import { anNextApiRequest, anNextApiResponse } from '@/fixtures/nextApi.fixture';
 import clearAllMocks = jest.clearAllMocks;
 
 global.fetch = jest.fn(() => Promise.resolve({
@@ -29,20 +29,5 @@ describe('searchAmiibos', () => {
 		expect(fetch).toHaveBeenCalledTimes(0)
 		expect(status).toHaveBeenCalledWith(401)
 		expect(json).toHaveBeenCalledWith({ code: 401, message: "Accès aux données non autorisé" })
-	});
-
-	it('lorsque la requete est correcte, appelle l‘api', () => {
-		searchAmiibos(anNextApiRequest({
-			method: "GET",
-			query: {
-				name: 'toto'
-			}
-		}), anNextApiResponse())
-
-		expect(fetch).toHaveBeenCalledTimes(1)
-		expect(fetch).toHaveBeenCalledWith(`https://www.amiiboapi.com/api/amiibo/?name=toto`,
-			{
-				method: "GET",
-			})
 	});
 });

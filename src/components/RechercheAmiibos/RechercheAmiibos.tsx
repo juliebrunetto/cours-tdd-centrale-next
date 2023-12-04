@@ -1,10 +1,10 @@
 import React, { FormEvent, useState, useId } from "react";
-import Card from "@/components/Card/Card";
+import Card from "@/components/ui/Card/Card";
 import Image from "next/image";
-import styles from "./RechercherAmiibos.module.css";
+import styles from "./RechercheAmiibos.module.css";
 import { Amiibo } from '@/dto/amiibo.type';
 
-export default function RechercherAmiibos() {
+export default function RechercheAmiibos() {
 	const [listAmiibo, setListAmiibo] = useState<Array<Amiibo>>([]);
 	const inputId = useId();
 
@@ -28,10 +28,11 @@ export default function RechercherAmiibos() {
 			<h1 className={styles.title}>Rechercher un Amiibo</h1>
 
 			<form onSubmit={onHandleSubmit}>
-				<label htmlFor={inputId}>Nom de l‘Amiboo</label>
-				<input type={"text"} name={"searchInput"} id={inputId}/>
+				<label htmlFor={inputId}>Nom de l‘Amiboo (Champ obligatoire)</label>
+				<input type={"text"} name={"searchInput"} id={inputId} required/>
 				<button type="submit">Rechercher</button>
 			</form>
+
 			{listAmiibo.length > 0 && (
 				<>
 					<h2>Résultats</h2>
@@ -39,12 +40,12 @@ export default function RechercherAmiibos() {
 						{listAmiibo.map((amiibo: Amiibo) => {
 							return (
 								<li className={styles.card} key={amiibo.id}>
-									<Card title={amiibo.name} release={amiibo.releaseEurope}>
+									<Card title={amiibo.name} release={`Sortie en Europe le ${amiibo.releaseEurope}`}>
 										<div className={styles.cardImage}>
 											<Image src={amiibo.image} alt="" objectFit="contain" layout="fill"/>
 										</div>
 										<dl>
-											<div className={styles.caracteristiques}>
+											<div className={styles.caracteristique}>
 												<dt className={styles.definition}>
 													Type
 												</dt>
@@ -52,7 +53,7 @@ export default function RechercherAmiibos() {
 													{amiibo.type}
 												</dd>
 											</div>
-											<div className={styles.caracteristiques}>
+											<div className={styles.caracteristique}>
 												<dt className={styles.definition}>
 													Série
 												</dt>

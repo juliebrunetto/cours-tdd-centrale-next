@@ -13,7 +13,7 @@
     height: 30rem;
 }
 
-.caracteristiques {
+.caracteristique {
     display: flex;
     flex-direction: row;
     gap: 0.5ch;

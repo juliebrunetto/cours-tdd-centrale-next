@@ -20,8 +20,8 @@ export default function Card({ title, release, children, className, ...rest }: C
 				{title}
 			</h2>
 			{release && (
-				<div className={styles.ownerInformation}>
-					Sortie en Europe le {release}
+				<div className={styles.release}>
+					{release}
 				</div>
 			)}
 			{children}

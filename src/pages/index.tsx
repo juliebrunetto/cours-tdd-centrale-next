@@ -1,6 +1,6 @@
 import React from "react";
-import RechercherAmiibos from "@/components/Home/RechercherAmiibos"
+import RechercheAmiibos from "@/components/RechercheAmiibos/RechercheAmiibos"
 
 export default function Index() {
-	return <RechercherAmiibos />;
+	return <RechercheAmiibos />;
 }

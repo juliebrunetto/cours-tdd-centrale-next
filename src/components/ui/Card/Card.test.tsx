@@ -24,8 +24,6 @@ describe("<Card>", () => {
 	it("affiche la date de release de la carte", () => {
 		render(<Card title="Je suis le titre" release="15/12/2020" />);
 
-		expect(screen.getByText("Sortie en Europe le 15/12/2020")).toBeVisible();
+		expect(screen.getByText("15/12/2020")).toBeVisible();
 	});
-
-
 });

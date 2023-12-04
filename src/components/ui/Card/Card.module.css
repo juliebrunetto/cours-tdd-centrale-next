@@ -5,7 +5,7 @@
   display: grid;
   grid-template-columns: subgrid;
   grid-template-areas:
-    "ownerInformation"
+    "release"
     "title";
 }
 
@@ -14,8 +14,8 @@
   margin-left: auto;
 }
 
-.ownerInformation {
-  grid-area: ownerInformation;
+.release {
+  grid-area: release;
   text-align: right;
 }
 

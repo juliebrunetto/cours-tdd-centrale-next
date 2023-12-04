@@ -33,7 +33,6 @@ export default async function searchAmiibos(
 			.status(401)
 			.json({ code: 401, message: "Accès aux données non autorisé" });
 	}
-
 	try {
 		const apiResponse = await fetch(
 			`https://www.amiiboapi.com/api/amiibo/?name=${req.query.name}`,
@@ -44,7 +43,7 @@ export default async function searchAmiibos(
 		const amiibosResponse = await apiResponse.json() as AmiiboListResponse;
 
 		const responseMapped: Array<Amiibo> = amiibosResponse.amiibo.map((data: AmiiboResponse): Amiibo => ({
-			name: data.character,
+			name: data.name,
 			image: data.image,
 			id: `${data.head}${data.tail}`,
 			releaseEurope: data.release.eu ?? undefined,

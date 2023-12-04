@@ -7,7 +7,7 @@ export function anAmiibo(override?: Partial<Amiibo>): Amiibo {
 		id: '0003010200410302',
 		releaseEurope: '2015-06-26',
 		type: 'Yarn',
-		serie: 'Yoshi\'s Woolly World',
+		serie: 'Yoshi‘s Woolly World',
 		...override,
 	}
 }
